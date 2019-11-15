@@ -1,0 +1,94 @@
+<nav class="navbar text-center ">
+  <div class="container  h-100">
+    <div><h3 style="color: black">{{'Search films'}}</h3></div>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+
+    <div class="searchbar ">
+      <input class="search_input" type="text" name="" #search placeholder="Search..."(keyup.enter)="OnSearch(search.value)">
+      <button (click)="OnSearch(search.value)" class="search_icon"><i class="fas fa-search"></i></button>
+    </div>
+
+  </div>
+</nav>
+
+
+<div class="container ">
+  <div class="movie-card" *ngFor="let film of listFilms">
+    <div (click)="getFilmByID(film.imdbID,$event)">
+    <div class="movie-header " [ngStyle]="{'background-image':'url(' + film.Poster + ')','background-size':'cover'}">
+      <div class="header-icon-container">
+        <a href="#">
+          <i class="material-icons header-icon"></i>
+        </a>
+      </div>
+    </div><!--movie-header-->
+    <div class="movie-content">
+      <div class="movie-content-header">
+        <a href="#">
+          <h3 class="movie-title">{{film.Title}}</h3>
+        </a>
+
+      </div>
+      <div class="movie-info">
+        <div class="info-section">
+          <label>Date & Time</label>
+          <span>{{film.Year}}</span>
+        </div><!--date,time-->
+        <div class="info-section">
+          <label>Screen</label>
+          <span>03</span>
+        </div><!--screen-->
+        <div class="info-section">
+          <label>Row</label>
+          <span>F</span>
+        </div><!--row-->
+        <div class="info-section">
+          <label>Seat</label>
+          <span>21,22</span>
+        </div><!--seat-->
+      </div>
+    </div><!--movie-content-->
+  </div><!--movie-card-->
+
+
+  </div>
+
+</div><!--container-->
+
+<div class="container " >
+  <div class="row">
+  <ul class="pagination">
+    <li class="page-item" *ngIf="page!=1"><a class="page-link" (click)="preview($event)">Previous</a></li>
+    &nbsp;&nbsp;&nbsp;
+   <!-- <span *ngFor="let film of listPaginate;let i=index">-->
+    <span *ngIf="page>1"><li class="page-item " ><a class="page-link" >{{page-1}}</a></li></span>
+      <span *ngIf="page!==0"><li class="page-item " [ngClass]="{'active':page}"><a class="page-link" (click)="setPage(page,$event)">{{page}}</a></li></span>
+    <span *ngIf="page<this.pages"><li class="page-item " ><a class="page-link" >{{page+1}}</a></li></span>
+    <!--</span>
+
+    <li class="page-item " [ngClass]="{'active':page==listPaginate.length}"><a class="page-link" (click)="setPage(listPaginate.length,$event)">{{listPaginate.length}}</a></li>
+   -->
+    &nbsp;&nbsp;&nbsp;
+    <li class="page-item" *ngIf="page!=this.pages"><a class="page-link" (click)="next($event)">Next</a></li>
+  </ul>
+  </div>
+</div>
+
+<!--
+<nav class="navbar text-center ">
+  <div class="container  h-100">
+    <div class="col-xs-8">
+      &lt;!&ndash; Pagination of the page &ndash;&gt;
+      <ul class="nav-pagination list-unstyled text-center">
+
+        <li class="prev" *ngIf="page!=0"><a href="" (click)="preview($event)">Prev</a></li>
+        <span *ngFor="let p of pages;let i=index">
+             <li [ngClass]="{'active':page==i}"><a (click)="setPage(i,$event)">{{i + 1}}</a></li>
+            </span>
+        <li class="next" *ngIf="page!=pages.length-1"><a (click)="next($event)">Next</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+-->

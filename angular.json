@@ -24,9 +24,35 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/bootstrap.css",
+              "src/assets/vendors/linericon/style.css",
+              "src/assets/css/style.css",
+              "src/assets/css/magnific-popup.css",
+              "src/assets/vendors/nice-select/css/nice-select.css",
+              "src/assets/vendors/animate-css/animate.css",
+              "src/assets/vendors/flaticon/flaticon.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "src/assets/js/jquery-3.2.1.min.js",
+              "src/assets/js/popper.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/stellar.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/vendors/nice-select/js/jquery.nice-select.min.js",
+              "src/assets/vendors/isotope/imagesloaded.pkgd.min.js",
+              "src/assets/vendors/isotope/isotope-min.js",
+              "src/assets/vendors/owl-carousel/owl.carousel.min.js",
+              "src/assets/js/jquery.ajaxchimp.min.js",
+              "src/assets/vendors/counter-up/jquery.waypoints.min.js",
+              "src/assets/vendors/counter-up/jquery.counterup.min.js",
+              "src/assets/js/mail-script.js",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ]
           },
           "configurations": {
             "production": {

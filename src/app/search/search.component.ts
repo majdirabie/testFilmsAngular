@@ -11,6 +11,7 @@ import {environment} from '../../environments/environment';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+
   sizeItems = [10, 20, 50, 50];
   textArray = [
     'Hitman',
@@ -54,6 +55,7 @@ export class SearchComponent implements OnInit {
           } else {
             this.listPaginate = new Array(100);
           }
+          window.scroll({left: 0, top: 0, behavior: 'smooth'});
         } else {
           this.ErrorSuccess(data['Error'], 'Error');
         }
@@ -104,6 +106,8 @@ export class SearchComponent implements OnInit {
           this.sizeElement = data['totalResults'];
           this.pages = Math.round(this.sizeElement / 10);
           this.listPaginate = new Array(this.pages);
+          window.scroll({left: 0, top: 0, behavior: 'smooth'});
+
         },
         (error) => {
           // console.log(error.error.message);
@@ -117,6 +121,8 @@ export class SearchComponent implements OnInit {
           this.listPaginate = data['Search'];
           this.pages = Math.round(this.sizeElement / 10);
           this.listPaginate = new Array(this.pages);
+          window.scroll({left: 0, top: 0, behavior: 'smooth'});
+
         },
         (error) => {
           console.log(error.error.message);
@@ -140,6 +146,7 @@ export class SearchComponent implements OnInit {
           } else {
             this.listPaginate = new Array(100);
           }
+          window.scroll({left: 0, top: 0, behavior: 'smooth'});
 
         },
         (error) => {
@@ -148,7 +155,10 @@ export class SearchComponent implements OnInit {
       );
     } else {
       this.getListFilms(this.textArray[this.randomNumber], this.page, this.apiKey);
+
     }
+
+
   }
 
   preview(event: any) {
@@ -166,6 +176,8 @@ export class SearchComponent implements OnInit {
           } else {
             this.listPaginate = new Array(100);
           }
+          window.scroll({left: 0, top: 0, behavior: 'smooth'});
+
         },
         (error) => {
           console.log(error.error.message);

@@ -106,6 +106,7 @@ a:hover {
   margin: 2em;
   border-radius: 10px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .movie-header {
@@ -119,9 +120,8 @@ a:hover {
 }
 
 .manOfSteel {
-  /*
-  background: url("http://henrycavill.org/images/Films/2013-Man-of-Steel/posters/3-Walmart-Superman-a.jpg");
-  */
+
+  background: url("/assets/no_image.png");
   background-size: cover;
 }
 

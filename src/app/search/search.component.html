@@ -15,13 +15,12 @@
 <div class="container ">
   <div class="movie-card" *ngFor="let film of listFilms">
     <div (click)="getFilmByID(film.imdbID)">
-    <div class="movie-header " [ngStyle]="{'background-image':'url(' + film.Poster + ')','background-size':'cover'}">
-      <div class="header-icon-container">
-        <a href="#">
-          <i class="material-icons header-icon"></i>
-        </a>
-      </div>
-    </div><!--movie-header-->
+    <span ><div class="movie-header " [ngStyle]="film.Poster !== 'N/A' ? {'background-image':'url(' + film.Poster + ')','background-size':'cover'}:{'background-image':'url(./assets/no_image.png)' ,'background-size':'cover'}" >
+
+    </div></span><!--movie-header-->
+   <!--   <span *ngIf="film.Poster==='N/A'">
+<img src="./assets/no_image.png" [ngStyle]="{'background-size':'cover'}" >
+    </span>&lt;!&ndash;movie-header&ndash;&gt;-->
     <div class="movie-content">
       <div class="movie-content-header">
         <a href="#">
@@ -34,17 +33,10 @@
           <label>Date & Time</label>
           <span>{{film.Year}}</span>
         </div><!--date,time-->
+
         <div class="info-section">
-          <label>Screen</label>
-          <span>03</span>
-        </div><!--screen-->
-        <div class="info-section">
-          <label>Row</label>
-          <span>F</span>
-        </div><!--row-->
-        <div class="info-section">
-          <label>Seat</label>
-          <span>21,22</span>
+          <label>Type</label>
+          <span>{{film.Type}}</span>
         </div><!--seat-->
       </div>
     </div><!--movie-content-->
@@ -61,9 +53,9 @@
     <li class="page-item" *ngIf="page!=1"><a class="page-link" (click)="preview($event)">Previous</a></li>
     &nbsp;&nbsp;&nbsp;
    <!-- <span *ngFor="let film of listPaginate;let i=index">-->
-    <span *ngIf="page>1"><li class="page-item " ><a class="page-link" >{{page-1}}</a></li></span>
+    <span *ngIf="page>1"><li class="page-item " ><a class="page-link" (click)="setPage(page-1,$event)" >{{page-1}}</a></li></span>
       <span *ngIf="page!==0"><li class="page-item " [ngClass]="{'active':page}"><a class="page-link" (click)="setPage(page,$event)">{{page}}</a></li></span>
-    <span *ngIf="page<this.pages"><li class="page-item " ><a class="page-link" >{{page+1}}</a></li></span>
+    <span *ngIf="page<this.pages"><li class="page-item " ><a class="page-link" (click)="setPage(page+1,$event)">{{page+1}}</a></li></span>
     <!--</span>
 
     <li class="page-item " [ngClass]="{'active':page==listPaginate.length}"><a class="page-link" (click)="setPage(listPaginate.length,$event)">{{listPaginate.length}}</a></li>

@@ -44,16 +44,16 @@
           <h4 class="price"><span>Actors &nbsp;:</span> {{film.Actors}} </h4>
           <h4 class="price"><span>Language &nbsp;:</span> {{film.Language}} </h4>
           <h4 class="price"><span>Country &nbsp;:</span> {{film.Country}} </h4>
-          <h4 class="price"><span>Country &nbsp;:</span> {{film.imdbRating}} </h4>
+          <h4 class="price"><span><i class="fa fa-trophy" aria-hidden="true"></i> &nbsp;:</span> {{film.Awards}} </h4>
           <p class="vote"><strong>Duration of the {{film.Type}} : ({{film.Runtime}})</strong></p>
           <h5 class="sizes">Rated :
             <span class="size" data-toggle="tooltip" title="small">{{film.Rated}}</span>
           </h5>
-          <h5 class="colors">colors:
+          <!--<h5 class="colors">colors:
             <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
             <span class="color green"></span>
             <span class="color blue"></span>
-          </h5>
+          </h5>-->
           <h5 class="sizes">The first film on DVD: &nbsp;&nbsp;&nbsp;
             <span class="badge badge-info" style="width: 20vh">{{film.DVD}}</span>
           </h5>
@@ -61,17 +61,7 @@
             <button class="like btn btn-default " type="button" (click)="goToListFilm()"><span
               class="	fa fa-level-up "></span></button>
           </div>
-          <div class="col"></div>
-          <span class="badge badge-primary">Primary</span>
-          <span class="badge badge-secondary">Secondary</span>
-          <span class="badge badge-success">Success</span>
-          <span class="badge badge-danger">Danger</span>
-          <span class="badge badge-warning">Warning</span>
-          <span class="badge badge-info">Info</span>
-          <span class="badge badge-light">Light</span>
-          <span class="badge badge-dark">Dark</span>
-
-        </div>
+                 </div>
       </div>
     </div>
   </div>

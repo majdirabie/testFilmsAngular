@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FilmsService} from '../../core/services/films.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FilmsService} from '../core/services/films.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Film} from '../../core/models/film';
+import {Film} from '../core/models/film';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-details-film',
@@ -28,13 +29,12 @@ export class DetailsFilmComponent implements OnInit {
   }
 
   getFilmByimdbID() {
-    this.filmService.getFilm(this.filmId, '295e6386').subscribe(data => {
+    this.filmService.getFilm(this.filmId, environment.apiKey).subscribe(data => {
       this.film = data;
       this.rating = Math.round(+this.film.imdbRating);
       this.x_rating = this.x_rating - this.rating;
       this.z_rating=new Array(this.rating)
       this.y_rating=new Array(this.x_rating)
-      console.log(this.rating);
     });
   }
 

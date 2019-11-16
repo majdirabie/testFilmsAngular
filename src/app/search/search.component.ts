@@ -3,6 +3,7 @@ import {FilmsService} from '../core/services/films.service';
 import {Film} from '../core/models/film';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +20,7 @@ export class SearchComponent implements OnInit {
   randomNumber = Math.floor(Math.random() * this.textArray.length);
   filmId: string;
   messageError: string = '';
-  apiKey: string = '295e6386';
+  apiKey: string = `${environment.apiKey}`;
   search: string = '';
   listFilms: Film[];
   page: number = 1;
@@ -44,15 +45,23 @@ export class SearchComponent implements OnInit {
     page = this.page;
     search = this.textArray[this.randomNumber];
     this.filmService.getListFilms(search, page, apikey).subscribe(data => {
-      this.listFilms = data['Search'];
-      this.sizeElement = data['totalResults'];
-      this.pages = Math.round(this.sizeElement / 10);
-      if (this.pages <= 100) {
-        this.listPaginate = new Array(this.pages);
-      } else {
-        this.listPaginate = new Array(100);
-      }
-    });
+        if (data['Response'] === 'True') {
+          this.listFilms = data['Search'];
+          this.sizeElement = data['totalResults'];
+          this.pages = Math.round(this.sizeElement / 10);
+          if (this.pages <= 100) {
+            this.listPaginate = new Array(this.pages);
+          } else {
+            this.listPaginate = new Array(100);
+          }
+        } else {
+          this.ErrorSuccess(data['Error'], 'Error');
+        }
+      },
+      (error) => {
+        //console.log(error.message);
+        this.ErrorSuccess(error.message.slice(0, 21) + ' : No Connexion', '');
+      });
   }
 
   OnSearch(value: string) {
@@ -61,20 +70,15 @@ export class SearchComponent implements OnInit {
       let title = 'Warning';
       this.warningSuccess(message, title);
     } else {
-
       this.search = value;
       this.page = 1;
-
-
       this.filmService.getListFilms(this.search, this.page, this.apiKey).subscribe((data: any) => {
         if (data['Response'] === 'True') {
           this.listFilms = data['Search'];
           console.log(this.listFilms[1]);
           this.sizeElement = data['totalResults'];
           this.pages = Math.round(this.sizeElement / 10);
-
           this.listPaginate = new Array(this.pages);
-
         } else {
           this.ErrorSuccess(data['Error'], 'Error');
         }
@@ -84,8 +88,7 @@ export class SearchComponent implements OnInit {
 
   }
 
-  getFilmByID(imdbID: string, event) {
-    event.preventDefault();
+  getFilmByID(imdbID: string) {
     this.filmId = imdbID;
     console.log(this.filmId);
     this.router.navigateByUrl('/details/' + imdbID);
@@ -95,17 +98,12 @@ export class SearchComponent implements OnInit {
   setPage(i, event: any) {
     event.preventDefault();
     this.page = i;
-    console.log(this.search);
     if (this.search === '') {
       this.filmService.getListFilms(this.textArray[this.randomNumber], this.page, this.apiKey).subscribe(data => {
           this.listFilms = data['Search'];
           this.sizeElement = data['totalResults'];
-
           this.pages = Math.round(this.sizeElement / 10);
-
           this.listPaginate = new Array(this.pages);
-
-
         },
         (error) => {
           // console.log(error.error.message);
@@ -115,15 +113,10 @@ export class SearchComponent implements OnInit {
     } else {
       this.filmService.getListFilms(this.search, this.page, this.apiKey).subscribe(data => {
           this.listFilms = data['Search'];
-
           this.sizeElement = data['totalResults'];
           this.listPaginate = data['Search'];
-
           this.pages = Math.round(this.sizeElement / 10);
-
           this.listPaginate = new Array(this.pages);
-
-
         },
         (error) => {
           console.log(error.error.message);
@@ -139,10 +132,8 @@ export class SearchComponent implements OnInit {
     if (this.search !== '') {
       this.filmService.getListFilms(this.search, this.page, this.apiKey).subscribe(data => {
           this.listFilms = data['Search'];
-
           this.sizeElement = data['totalResults'];
           this.listPaginate = data['Search'];
-
           this.pages = Math.round(this.sizeElement / 10);
           if (this.pages <= 100) {
             this.listPaginate = new Array(this.pages);
@@ -167,7 +158,6 @@ export class SearchComponent implements OnInit {
     if (this.search !== '') {
       this.filmService.getListFilms(this.search, this.page, this.apiKey).subscribe(data => {
           this.listFilms = data['Search'];
-
           this.sizeElement = data['totalResults'];
           this.listPaginate = data['Search'];
           this.pages = Math.round(this.sizeElement / 10);
@@ -176,7 +166,6 @@ export class SearchComponent implements OnInit {
           } else {
             this.listPaginate = new Array(100);
           }
-
         },
         (error) => {
           console.log(error.error.message);

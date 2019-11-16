@@ -8,7 +8,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {FilmsService} from './core/services/films.service';
 import {FormsModule} from '@angular/forms';
-import {DetailsFilmComponent} from './search/details-film/details-film.component';
+import {DetailsFilmComponent} from './details-film/details-film.component';
 import {MatToolbarModule, MatSnackBarModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';

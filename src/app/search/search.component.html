@@ -14,7 +14,7 @@
 
 <div class="container ">
   <div class="movie-card" *ngFor="let film of listFilms">
-    <div (click)="getFilmByID(film.imdbID,$event)">
+    <div (click)="getFilmByID(film.imdbID)">
     <div class="movie-header " [ngStyle]="{'background-image':'url(' + film.Poster + ')','background-size':'cover'}">
       <div class="header-icon-container">
         <a href="#">
